@@ -1,0 +1,243 @@
+:root {
+  --rose: #e63973;
+  --peach: #ffd6a5;
+  --cream: #fff8ef;
+  --ink: #2b1b24;
+  --glow: #ff7fb0;
+  --mist: #fff0f6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: "Quicksand", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 15% 20%, #ffe4f3 0%, transparent 45%),
+    radial-gradient(circle at 85% 75%, #ffe9cc 0%, transparent 40%),
+    linear-gradient(145deg, #fff7f2 0%, #ffeef7 50%, #fff9ed 100%);
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow-x: hidden;
+}
+
+.app {
+  width: min(920px, 92vw);
+  margin: 2rem auto;
+}
+
+.panel {
+  display: none;
+}
+
+.panel.active {
+  display: block;
+}
+
+.gate-panel,
+.card {
+  border: 2px solid rgba(230, 57, 115, 0.25);
+  border-radius: 28px;
+  backdrop-filter: blur(3px);
+  background: rgba(255, 252, 246, 0.86);
+  box-shadow:
+    0 20px 35px rgba(144, 31, 73, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.gate-panel {
+  text-align: center;
+  padding: clamp(1.5rem, 3.4vw, 3rem);
+  animation: riseIn 700ms ease-out;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--rose);
+  margin: 0 0 0.8rem;
+}
+
+h1,
+h2 {
+  font-family: "Sacramento", cursive;
+  line-height: 1.05;
+  margin: 0;
+  color: #bf1f57;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.1rem, 9vw, 4.5rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 7vw, 3.6rem);
+}
+
+.subtitle {
+  max-width: 38ch;
+  margin: 1rem auto 1.4rem;
+  font-weight: 600;
+}
+
+.love-btn {
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.9rem 1.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(90deg, #d81b60, #ff5a78 55%, #ff7f50);
+  box-shadow: 0 10px 18px rgba(216, 27, 96, 0.3);
+  transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+}
+
+.love-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 24px rgba(216, 27, 96, 0.36);
+  filter: brightness(1.05);
+}
+
+.love-btn:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.love-btn.secondary {
+  background: linear-gradient(90deg, #ef476f, #f78c6b);
+  margin-top: 0.25rem;
+}
+
+.love-panel {
+  position: relative;
+}
+
+.card {
+  position: relative;
+  z-index: 2;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  animation: riseIn 700ms ease-out;
+}
+
+.poem {
+  line-height: 1.6;
+  margin: 0.8rem 0 1.5rem;
+  font-size: 1.02rem;
+}
+
+.game-wrap {
+  border: 1px dashed rgba(230, 57, 115, 0.5);
+  border-radius: 18px;
+  background: var(--mist);
+  padding: 0.9rem;
+}
+
+.game-title {
+  margin: 0;
+  font-weight: 700;
+}
+
+.game-info,
+.score {
+  margin: 0.35rem 0;
+}
+
+.win-message {
+  min-height: 1.6rem;
+  margin-top: 1rem;
+  font-weight: 700;
+  color: #bb1351;
+}
+
+.hearts-field {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.heart {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: var(--glow);
+  transform: rotate(45deg);
+  opacity: 0.86;
+  animation: floatUp linear forwards;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.heart::before {
+  left: -9px;
+}
+
+.heart::after {
+  top: -9px;
+}
+
+.heart.tap {
+  z-index: 5;
+  pointer-events: auto;
+  cursor: pointer;
+  touch-action: none;
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.35);
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(6vh) rotate(45deg) scale(0.9);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.95;
+  }
+  to {
+    transform: translateY(-110vh) rotate(45deg) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes riseIn {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .app {
+    width: 94vw;
+    margin: 1rem auto;
+  }
+
+  .poem {
+    font-size: 0.96rem;
+  }
+}

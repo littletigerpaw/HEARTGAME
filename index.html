@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For Chelseataka</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Sacramento&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section id="gate" class="panel gate-panel active" aria-live="polite">
+        <p class="eyebrow">Private Love Portal</p>
+        <h1>if your chelseataka pls click here</h1>
+        <p class="subtitle">A tiny surprise made with all my love.</p>
+        <button id="enterBtn" class="love-btn" type="button">Click Here, My Love</button>
+      </section>
+
+      <section id="loveWorld" class="panel love-panel" aria-hidden="true">
+        <div id="heartsField" class="hearts-field" aria-hidden="true"></div>
+
+        <article class="card">
+          <p class="eyebrow">For Chelseataka</p>
+          <h2>You Are My Favorite Story</h2>
+
+          <p id="poem" class="poem">
+            In every little morning light,<br />
+            your name arrives before the sun.<br />
+            You turn my ordinary days<br />
+            into soft music, one by one.<br /><br />
+
+            If love had colors, it would be<br />
+            the way your laughter paints my sky.<br />
+            And if forever had one face,<br />
+            it would be yours, and that is why<br /><br />
+
+            I keep this promise, warm and true:<br />
+            no matter where my footsteps roam,<br />
+            my heart still knows one perfect place,
+            and Chelseataka, you are home.
+          </p>
+
+          <div class="game-wrap" role="group" aria-label="love game">
+            <p class="game-title">Love Game: Catch 7 Hearts</p>
+            <p class="game-info">Tap the floating hearts to collect them. You now have 33 seconds.</p>
+            <p class="score" id="scoreText">Hearts Collected: 0 / 7</p>
+            <button id="spawnBtn" class="love-btn secondary" type="button">Start The Game</button>
+          </div>
+
+          <p id="winMessage" class="win-message" aria-live="polite"></p>
+        </article>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
