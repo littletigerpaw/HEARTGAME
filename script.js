@@ -1,6 +1,7 @@
 const gate = document.getElementById("gate");
 const loveWorld = document.getElementById("loveWorld");
 const heartsField = document.getElementById("heartsField");
+const card = document.querySelector(".card");
 const enterBtn = document.getElementById("enterBtn");
 const spawnBtn = document.getElementById("spawnBtn");
 const scoreText = document.getElementById("scoreText");
@@ -69,6 +70,27 @@ function createHeart({ tappable = false } = {}) {
   }, 9000);
 }
 
+function burstConfetti() {
+  const pieces = 28;
+
+  for (let i = 0; i < pieces; i += 1) {
+    const dot = document.createElement("span");
+    dot.className = "confetti";
+    dot.style.left = `${randomBetween(8, 92)}vw`;
+    dot.style.top = `${randomBetween(18, 42)}vh`;
+    dot.style.background = `hsl(${randomBetween(0, 360)}, 92%, 64%)`;
+    dot.style.setProperty("--x", `${randomBetween(-160, 160)}px`);
+    dot.style.setProperty("--y", `${randomBetween(-260, -120)}px`);
+    dot.style.setProperty("--r", `${randomBetween(-520, 520)}deg`);
+    dot.style.animationDuration = `${randomBetween(900, 1400)}ms`;
+    heartsField.appendChild(dot);
+
+    setTimeout(() => {
+      dot.remove();
+    }, 1500);
+  }
+}
+
 function startAmbientHearts() {
   if (ambientTimer) {
     clearInterval(ambientTimer);
@@ -87,8 +109,22 @@ function stopAmbientHearts() {
 function endGame(won) {
   clearInterval(gameTimer);
   gameTimer = null;
+
+  card.classList.remove("is-revealing");
+  card.classList.remove("is-hidden");
+  // Force reflow so the reveal animation restarts every round.
+  void card.offsetWidth;
+  card.classList.add("is-revealing");
+  setTimeout(() => {
+    card.classList.remove("is-revealing");
+  }, 420);
+
   spawnBtn.disabled = false;
   spawnBtn.textContent = "Play Again";
+
+  if (won) {
+    burstConfetti();
+  }
 
   winMessage.textContent = won
     ? "You caught every heart. I love you forever, Chelseataka."
@@ -100,6 +136,7 @@ function startGame() {
     return;
   }
 
+  card.classList.add("is-hidden");
   score = 0;
   scoreText.textContent = `Hearts Collected: ${score} / ${GOAL}`;
   winMessage.textContent = "";
